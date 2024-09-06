@@ -1,3 +1,18 @@
-.div{
-    color: aquamarine;
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+}
+
+.dialogsItems .dialog {
+    padding: 10px;
+    
+}
+
+.dialog {
+    padding: 10px;
+}
+
+.active {
+    color: gold;
 }
