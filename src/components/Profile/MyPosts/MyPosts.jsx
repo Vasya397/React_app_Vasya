@@ -10,11 +10,14 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    let text = newPostElement.current.value;
-    props.addPost(text);
+    props.addPost();
   };
 
-  let onPostChange = () => {};
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+    console.log(text);
+  };
 
   return (
     <div className={s.postsBlock}>

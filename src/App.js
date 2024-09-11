@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Dialogs from "./components/Dialogs/Dialogs";
 import { Routes, Route } from "react-router-dom";
 import News from "./components/News/News";
+import { updateNewPostText } from "./redux/state";
 
 const App = (props) => {
   return (
@@ -27,8 +28,9 @@ const App = (props) => {
             path="/profile"
             element={
               <Profile
-                posts={props.state.profilePage.posts}
+                profilePage={props.state.profilePage}
                 addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
               />
             }
           />
