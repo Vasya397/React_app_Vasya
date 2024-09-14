@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React_app_Vasya/static/css/main.d324d9fe.css",
+    "main.js": "/React_app_Vasya/static/js/main.3787a9bd.js",
+    "static/js/453.ed3810f9.chunk.js": "/React_app_Vasya/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/React_app_Vasya/index.html",
+    "main.d324d9fe.css.map": "/React_app_Vasya/static/css/main.d324d9fe.css.map",
+    "main.3787a9bd.js.map": "/React_app_Vasya/static/js/main.3787a9bd.js.map",
+    "453.ed3810f9.chunk.js.map": "/React_app_Vasya/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d324d9fe.css",
+    "static/js/main.3787a9bd.js"
+  ]
+}
