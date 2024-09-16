@@ -33,6 +33,9 @@ const createStore = () => {
     getState() {
       return _state;
     },
+    subscribe(observer) {
+      _callSubscriber = observer; // Подписываемся на изменения состояния
+    },
 
     addPost() {
       let newPost = {
@@ -45,14 +48,26 @@ const createStore = () => {
       _state.profilePage.newPostText = "";
       _callSubscriber(); // Вызываем подписчика после изменения состояния
     },
-
     updateNewPostText(newText) {
       _state.profilePage.newPostText = newText;
       _callSubscriber(); // Вызываем подписчика после изменения состояния
     },
 
-    subscribe(observer) {
-      _callSubscriber = observer; // Подписываемся на изменения состояния
+    dispatch(action) {
+      if (action.type === "ADD-POST") {
+        let newPost = {
+          id: 5,
+          message: _state.profilePage.newPostText,
+          likesCount: 0,
+        };
+
+        _state.profilePage.posts.push(newPost);
+        _state.profilePage.newPostText = "";
+        _callSubscriber();
+      } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        _state.profilePage.newPostText = action.newText;
+        _callSubscriber();
+      }
     },
   };
 };
