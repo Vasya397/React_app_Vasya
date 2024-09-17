@@ -1,8 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
-const SEND_MESSAGE = "SEND_MESSAGE";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 const createStore = () => {
   let _state = {
@@ -30,6 +28,7 @@ const createStore = () => {
       ],
       newMessageBody: "",
     },
+    sidebar: {},
   };
 
   let _callSubscriber = () => {
@@ -61,44 +60,14 @@ const createStore = () => {
     },
 
     dispatch(action) {
-      if (action.type === ADD_POST) {
-        let newPost = {
-          id: 5,
-          message: _state.profilePage.newPostText,
-          likesCount: 0,
-        };
+      _state.profilePage = profileReducer(_state.profilePage, action);
+      _state.messagesPage = dialogsReducer(_state.messagesPage, action);
+      _state.sidebar = sidebarReducer(_state.sidebar, action);
 
-        _state.profilePage.posts.push(newPost);
-        _state.profilePage.newPostText = "";
-        _callSubscriber();
-      } else if (action.type === UPDATE_NEW_POST_TEXT) {
-        _state.profilePage.newPostText = action.newText;
-        _callSubscriber();
-      } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        _state.messagesPage.newMessageBody = action.body;
-        _callSubscriber();
-      } else if (action.type === SEND_MESSAGE) {
-        let body = _state.messagesPage.newMessageBody;
-        _state.messagesPage.newMessageBody = "";
-        _state.messagesPage.messages.push({ id: 5, message: body });
-        _callSubscriber();
-      }
+      _callSubscriber();
     },
   };
 };
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newText: text,
-});
-
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageBodyCreator = (body) => ({
-  type: UPDATE_NEW_MESSAGE_BODY,
-  body: body,
-});
 
 const store = createStore();
 
