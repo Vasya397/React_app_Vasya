@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import store from "./redux/state";
+import store from "./redux/store";
 
 let rerenderEntireTree = (state) => {
   const container = document.getElementById("root");
@@ -20,7 +20,7 @@ let rerenderEntireTree = (state) => {
 rerenderEntireTree(store.getState());
 
 store.subscribe(() => {
-  rerenderEntireTree(store.getState()); // Подписываемся на изменения стора
+  rerenderEntireTree(store.getState());
 });
 
 // If you want to start measuring performance in your app, pass a function
