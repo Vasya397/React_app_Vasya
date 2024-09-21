@@ -40,7 +40,7 @@ const createStore = () => {
       return _state;
     },
     subscribe(observer) {
-      _callSubscriber = observer; // Подписываемся на изменения состояния
+      _callSubscriber = observer;
     },
 
     addPost() {
@@ -52,7 +52,7 @@ const createStore = () => {
 
       _state.profilePage.posts.push(newPost);
       _state.profilePage.newPostText = "";
-      _callSubscriber(); // Вызываем подписчика после изменения состояния
+      _callSubscriber();
     },
     updateNewPostText(newText) {
       _state.profilePage.newPostText = newText;
