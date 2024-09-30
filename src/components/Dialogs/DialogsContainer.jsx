@@ -13,11 +13,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessageBody: (body) => {
-      dispatch(sendMessageCreator(body)); // Исправляем на правильный экшен-криейтор
-    },
     sendMessage: () => {
-      dispatch(updateNewMessageBodyCreator());
+      dispatch(sendMessageCreator());
+    },
+    updateNewMessageBody: (body) => {
+      dispatch(updateNewMessageBodyCreator(body));
     },
   };
 };
