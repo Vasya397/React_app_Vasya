@@ -3,12 +3,12 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
-import Dialogs from "./components/Dialogs/Dialogs";
 import { Routes, Route } from "react-router-dom";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="app-wrapper">
       <Header />
@@ -18,6 +18,7 @@ const App = (props) => {
           <Route path="/dialogs" element={<DialogsContainer />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
+          <Route path="/users" element={<UsersContainer />} />
         </Routes>
       </div>
     </div>

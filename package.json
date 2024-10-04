@@ -4,6 +4,7 @@
   "homepage": "https://vasya397.github.io/React_app_Vasya/",
   "private": true,
   "dependencies": {
+    "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
