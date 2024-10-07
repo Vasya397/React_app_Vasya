@@ -44,7 +44,7 @@ export const unfollowActionCreator = (userId) => ({
   userId,
 });
 export const setUsersActionCreator = (users) => ({
-  type: UNFOLLOW,
+  type: SET_USERS,
   users,
 });
 
