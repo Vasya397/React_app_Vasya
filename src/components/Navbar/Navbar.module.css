@@ -1,9 +1,9 @@
-.nav { 
-    grid-area: n;
-    background-color: blueviolet;
-    padding: 10px;
-  }
-  
+.nav {
+  grid-area: n;
+  background-color: blueviolet;
+  padding: 10px;
+}
+
 .item a {
   color: white;
   text-decoration: none;
@@ -12,4 +12,3 @@
 .item a.activeLink {
   color: gold;
 }
-
