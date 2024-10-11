@@ -2,17 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import {
-  followActionCreator,
-  setUsersActionCreator,
-  unfollowActionCreator,
-  setUsersTotalCountActionCreator,
-  setCurrentPageActionCreator,
-  toggleIsFetchingActiomCreator,
+  follow,
+  setUsers,
+  unfollow,
+  setTotalUsersCount,
+  setCurrentPage,
+  toggleIsFetching,
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
     axios
@@ -65,30 +65,37 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followActionCreator(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowActionCreator(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersActionCreator(users));
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageActionCreator(pageNumber));
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setUsersTotalCountActionCreator(totalCount));
-    },
-    onPageChanged: (pageNumber) => {
-      dispatch(setCurrentPageActionCreator(pageNumber));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingActiomCreator(isFetching));
-    },
-  };
-};
+// let mapDispatchToProps = (dispatch) => {
+//   return {
+//     follow: (userId) => {
+//       dispatch(followActionCreator(userId));
+//     },
+//     unfollow: (userId) => {
+//       dispatch(unfollowActionCreator(userId));
+//     },
+//     setUsers: (users) => {
+//       dispatch(setUsersActionCreator(users));
+//     },
+//     setCurrentPage: (pageNumber) => {
+//       dispatch(setCurrentPageActionCreator(pageNumber));
+//     },
+//     setTotalUsersCount: (totalCount) => {
+//       dispatch(setUsersTotalCountActionCreator(totalCount));
+//     },
+//     onPageChanged: (pageNumber) => {
+//       dispatch(setCurrentPageActionCreator(pageNumber));
+//     },
+//     toggleIsFetching: (isFetching) => {
+//       dispatch(toggleIsFetchingActiomCreator(isFetching));
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleIsFetching,
+})(UsersContainer);
