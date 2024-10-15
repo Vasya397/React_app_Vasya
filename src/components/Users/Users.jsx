@@ -31,7 +31,7 @@ let Users = (props) => {
         <div key={users.id}>
           <span>
             <div>
-              <NavLink to={"/profile"}>
+              <NavLink to={"/profile/" + users.id}>
                 <img
                   src={
                     users.photos.small != null ? users.photos.small : userPhoto
