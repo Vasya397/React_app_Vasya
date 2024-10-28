@@ -1,11 +1,16 @@
-import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
+import {
+  legacy_createStore,
+  combineReducers,
+  applyMiddleware,
+  compose,
+} from "redux";
 import { devToolsEnhancer } from "@redux-devtools/extension";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
-import thunkMiddleware from "redux-thunk";
+import { thunk } from "redux-thunk";
 
 const rootReducer = combineReducers({
   profilePage: profileReducer,
@@ -15,13 +20,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
-const store = legacy_createStore(
-  rootReducer,
-  applyMiddleware(thunkMiddleware),
-  devToolsEnhancer()
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-  //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
-);
+const composedEnhancers = compose(applyMiddleware(thunk), devToolsEnhancer());
+
+const store = legacy_createStore(rootReducer, composedEnhancers);
 
 export default store;
