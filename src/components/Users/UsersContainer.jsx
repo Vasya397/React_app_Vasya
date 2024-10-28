@@ -10,6 +10,7 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { withAuthNavigate } from "../../hoc/withAuthNavigate";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -53,6 +54,8 @@ let mapStateToProps = (state) => {
   };
 };
 
+let withNavigate = withAuthNavigate(UsersContainer);
+
 export default connect(mapStateToProps, {
   follow,
   unfollow,
@@ -60,4 +63,4 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   toggleFollowingProgress,
   getUsers,
-})(UsersContainer);
+})(withNavigate);

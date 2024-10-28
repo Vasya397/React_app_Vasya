@@ -3,12 +3,12 @@ import {
   sendMessageCreator,
   updateNewMessageBodyCreator,
 } from "../../redux/dialogs-reducer";
+import { withAuthNavigate } from "../../hoc/withAuthNavigate";
 import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => {
   return {
     messagesPage: state.dialogsPage,
-    isAuth: state.auth.isAuth,
   };
 };
 
@@ -23,6 +23,11 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthNavigateComponent = withAuthNavigate(Dialogs);
+
+const DialogsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthNavigateComponent);
 
 export default DialogsContainer;
