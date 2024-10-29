@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   follow,
-  setUsers,
   unfollow,
   setCurrentPage,
   toggleFollowingProgress,
@@ -14,14 +13,11 @@ import { withAuthNavigate } from "../../hoc/withAuthNavigate";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsersThunkCreator(
-      this.props.currentPage,
-      this.props.pageSize
-    );
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
+    this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
   render() {
@@ -59,7 +55,6 @@ let withNavigate = withAuthNavigate(UsersContainer);
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
   toggleFollowingProgress,
   getUsers,
