@@ -22,7 +22,12 @@ const MyPosts = (props) => {
 };
 
 const AddPostForm = ({ onAddPost }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     onAddPost(data.message);
@@ -32,9 +37,17 @@ const AddPostForm = ({ onAddPost }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <textarea
-        {...register("message", { required: true })}
+        {...register("message", {
+          required: "Не может быть пустым",
+          maxLength: { value: 10, message: "Слишком много символов" },
+        })}
         placeholder="Напишите пост"
       ></textarea>
+      {errors.message && (
+        <div>
+          <p> {errors.message.message}</p>
+        </div>
+      )}
       <button type="submit">Отправить</button>
     </form>
   );
