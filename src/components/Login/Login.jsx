@@ -1,30 +1,43 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+  isLatinAlphanumeric,
+  maxLengthLog,
+} from "../../utils/validators/validators";
+import s from "./login.module.css";
 
 const LoginForm = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input {...register("login", { required: true })} placeholder="Login" />
+        <input
+          {...register("login", {
+            required: "Логин обязателен",
+            validate: { isLatinAlphanumeric, maxLengthLog },
+          })}
+          placeholder="Login"
+        />
+        {errors.login && <p>{errors.login.message}</p>}
       </div>
       <div>
         <input
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: "Пароль обязателен",
+            validate: maxLengthLog,
+          })}
           placeholder="Password"
-          type="password"
         />
+        {errors.password && <p>{errors.password.message}</p>}
       </div>
       <div>
         <input type="checkbox" {...register("rememberMe")} />
         remember me
-      </div>
-      <div>
-        <textarea
-          {...register("message", { required: true })}
-          placeholder="Введите текст"
-        />
       </div>
       <div>
         <button type="submit"> Login </button>

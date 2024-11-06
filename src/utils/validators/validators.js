@@ -11,3 +11,14 @@ export const maxLength = (max) => (value) => {
   }
   return undefined;
 };
+
+export const isLatinAlphanumeric = (value) => {
+  const regex = /^[a-zA-Z0-9]+$/;
+  return (
+    regex.test(value) || "Логин может содержать только латинские буквы и цифры"
+  );
+};
+
+export const maxLengthLog = (value) => {
+  return value.length <= 10 || "Пароль не должен превышать 10 символов";
+};
