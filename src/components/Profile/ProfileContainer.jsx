@@ -10,7 +10,7 @@ import { withRouter } from "../../hoc/withRouter";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  componentDidMount(props) {
     let userId = this.props.params.userId;
     if (!userId) {
       userId = props.authorizedUserId;
