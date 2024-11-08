@@ -5,6 +5,9 @@ import {
   maxLengthLog,
 } from "../../utils/validators/validators";
 import s from "./login.module.css";
+import { connect } from "react-redux";
+import { login } from "../../redux/auth-reducer";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = ({ onSubmit }) => {
   const {
@@ -17,11 +20,11 @@ const LoginForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <input
-          {...register("login", {
+          {...register("email", {
             required: "Логин обязателен",
             validate: { isLatinAlphanumeric, maxLengthLog },
           })}
-          placeholder="Login"
+          placeholder="Email"
         />
         {errors.login && <p>{errors.login.message}</p>}
       </div>
@@ -46,10 +49,15 @@ const LoginForm = ({ onSubmit }) => {
   );
 };
 
-const Login = () => {
+const Login = (props) => {
   const handleFormSubmit = (data) => {
     console.log("Submitted data:", data);
+    props.login(data.email, data.password, data.rememberMe);
   };
+
+  if (props.isAuth) {
+    return <Navigate to={"/profile"} />;
+  }
 
   return (
     <div>
@@ -59,4 +67,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+});
+export default connect(null, { login })(Login);
