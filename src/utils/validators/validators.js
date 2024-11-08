@@ -13,7 +13,7 @@ export const maxLength = (max) => (value) => {
 };
 
 export const isLatinAlphanumeric = (value) => {
-  const regex = /^[a-zA-Z0-9]+$/;
+  const regex = /^[a-zA-Z0-9.@]+$/;
   return (
     regex.test(value) || "Логин может содержать только латинские буквы и цифры"
   );

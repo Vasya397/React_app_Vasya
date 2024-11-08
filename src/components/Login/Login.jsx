@@ -4,7 +4,6 @@ import {
   isLatinAlphanumeric,
   maxLengthLog,
 } from "../../utils/validators/validators";
-import s from "./login.module.css";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
@@ -22,11 +21,13 @@ const LoginForm = ({ onSubmit }) => {
         <input
           {...register("email", {
             required: "Логин обязателен",
-            validate: { isLatinAlphanumeric, maxLengthLog },
+            validate: {
+              isLatinAlphanumeric,
+            },
           })}
           placeholder="Email"
         />
-        {errors.login && <p>{errors.login.message}</p>}
+        {errors.email && <p>{errors.email.message}</p>}
       </div>
       <div>
         <input
@@ -35,6 +36,7 @@ const LoginForm = ({ onSubmit }) => {
             validate: maxLengthLog,
           })}
           placeholder="Password"
+          type="password"
         />
         {errors.password && <p>{errors.password.message}</p>}
       </div>
